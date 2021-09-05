@@ -27,7 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03.Persistence", "03.Persis
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04.Models", "04.Models", "{33E09DA7-41A9-47CF-B2DC-AE35AA3A1011}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalogDomain", "src\Services\Catalog\CatalogDomain\CatalogDomain.csproj", "{E7EB8527-B723-479F-884D-71C207DBB65D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Domain", "src\Services\Catalog\CatalogDomain\Catalog.Domain.csproj", "{E7EB8527-B723-479F-884D-71C207DBB65D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Persistence.Databese", "src\Services\Catalog\Catalog.Persistence.Databese\Catalog.Persistence.Databese.csproj", "{A2D8468D-F586-4276-AD38-762EE047EBEE}"
 EndProject

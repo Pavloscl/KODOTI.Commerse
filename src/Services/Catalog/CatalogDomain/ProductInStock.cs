@@ -1,6 +1,6 @@
 ﻿namespace Catalog.Domain
 {
-    class ProductInStock
+  public  class ProductInStock
     {
         public int ProductInStockId { get; set; }
 
