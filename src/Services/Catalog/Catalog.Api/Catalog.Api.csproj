@@ -12,7 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Service.Common.Collection\Service.Common.Collection.csproj" />
     <ProjectReference Include="..\Catalog.Persistence.Databese\Catalog.Persistence.Databese.csproj" />
+    <ProjectReference Include="..\Catalog.Service.Queries\Catalog.Service.Queries.csproj" />
   </ItemGroup>
 
 

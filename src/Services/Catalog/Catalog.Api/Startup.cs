@@ -1,4 +1,5 @@
 using Catalog.Persistence.Databese;
+using Catalog.Service.Queries;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -26,13 +27,18 @@ namespace Catalog.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+            // DbContext
             services.AddDbContext<ApplicationDbContext>(options =>
                           options.UseSqlServer
                          (Configuration.GetConnectionString("DefaultConnetion"),
                               x=> x.MigrationsHistoryTable("_EFMigrationsHistory","Catalog")
                          )
                      );
+
+            // Query services
+            services.AddTransient<IProductQueryService, ProductQueryService>();
+
+
             services.AddControllers();
         }
 
