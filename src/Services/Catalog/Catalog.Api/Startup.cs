@@ -1,5 +1,6 @@
 using Catalog.Persistence.Databese;
 using Catalog.Service.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Catalog.Api
@@ -34,6 +36,8 @@ namespace Catalog.Api
                               x=> x.MigrationsHistoryTable("_EFMigrationsHistory","Catalog")
                          )
                      );
+            // Event handlers
+            services.AddMediatR(Assembly.Load("Catalog.Service.EventHandlers"));
 
             // Query services
             services.AddTransient<IProductQueryService, ProductQueryService>();
