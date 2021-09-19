@@ -1,12 +1,15 @@
 using Catalog.Persistence.Databese;
 using Catalog.Service.Queries;
 using Common.Logging;
+using HealthChecks.UI.Client;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System.Reflection;
@@ -29,15 +32,21 @@ namespace Catalog.Api
             services.AddDbContext<ApplicationDbContext>(options =>
                           options.UseSqlServer
                          (Configuration.GetConnectionString("DefaultConnetion"),
-                              x=> x.MigrationsHistoryTable("_EFMigrationsHistory","Catalog")
+                              x => x.MigrationsHistoryTable("_EFMigrationsHistory", "Catalog")
                          )
                      );
+            // Health check
+            services.AddHealthChecks()
+                        .AddCheck("self", () => HealthCheckResult.Healthy())
+                        .AddDbContextCheck<ApplicationDbContext>();
+
+           // services.AddHealthChecksUI();
+
             // Event handlers
             services.AddMediatR(Assembly.Load("Catalog.Service.EventHandlers"));
 
             // Query services
             services.AddTransient<IProductQueryService, ProductQueryService>();
-
 
             services.AddControllers();
         }
@@ -63,6 +72,14 @@ namespace Catalog.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+
+                endpoints.MapHealthChecks("/hc", new HealthCheckOptions()
+                {
+                    Predicate = _ => true,
+                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                });
+
+                endpoints.MapHealthChecksUI();
             });
         }
     }
