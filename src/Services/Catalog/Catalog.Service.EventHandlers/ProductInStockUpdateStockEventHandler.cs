@@ -15,7 +15,7 @@ using static Catalog.Common.Enums;
 
 namespace Catalog.Service.EventHandlers
 {
-    class ProductInStockUpdateStockEventHandler : INotificationHandler<ProductInStockUpdateStockCommand>
+   public class ProductInStockUpdateStockEventHandler : INotificationHandler<ProductInStockUpdateStockCommand>
     {
         private readonly ApplicationDbContext _context;
         private readonly ILogger<ProductInStockUpdateStockEventHandler> _logger;

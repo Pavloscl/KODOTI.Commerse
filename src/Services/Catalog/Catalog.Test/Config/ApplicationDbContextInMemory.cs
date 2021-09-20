@@ -1,7 +1,5 @@
 ﻿using Catalog.Persistence.Databese;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace Catalog.Test.Config
 {
